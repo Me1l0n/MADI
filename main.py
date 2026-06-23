@@ -119,41 +119,37 @@ def sanitize_reaction(emoji: str) -> str:
     emoji = emoji.strip()
     
     mapping = {
-        "\ud83d\ude02": "\ud83e\udd23",  # 😂 -> 🤣
-        "\ud83d\ude3b": "\ud83e\udd23",  # 😹 -> 🤣
-        "\ud83d\ude05": "\ud83d\ude01",  # 😅 -> 😁
-        "\ud83d\ude06": "\ud83d\ude01",  # 😆 -> 😁
-        "\ud83d\ude00": "\ud83d\ude01",  # 😀 -> 😁
-        "\ud83d\ude03": "\ud83d\ude01",  # 😃 -> 😁
-        "\ud83d\ude04": "\ud83d\ude01",  # 😄 -> 😁
-        "\ud83d\ude0a": "\ud83e\udd70",  # 😊 -> 🥰
-        "\ud83d\ude09": "\ud83d\udc4c",  # 😉 -> 👌
-        "\ud83d\ude0c": "\ud83e\udd74",  # 😌 -> 🥴
-        "\ud83d\ude0f": "\ud83c\udf1a",  # 😏 -> 🌚
-        "\ud83d\ude2d": "\ud83d\ude22",  # 😭 -> 😢
-        "\ud83e\udd7a": "\ud83d\ude22",  # 🥺 -> 😢
-        "\ud83d\udc7f": "\ud83e\udd2c",  # 👿 -> 🤬
-        "\ud83d\udc80": "\ud83d\uddff",  # 💀 -> 🗿
-        "\u2620": "\ud83d\uddff",          # ☠ -> 🗿
+        "😂": "🤣",
+        "😹": "🤣",
+        "😅": "😁",
+        "😆": "😁",
+        "😀": "😁",
+        "😃": "😁",
+        "😄": "😁",
+        "😊": "🥰",
+        "😉": "👌",
+        "😌": "🥴",
+        "😏": "🌚",
+        "😭": "😢",
+        "🥺": "😢",
+        "👿": "🤬",
+        "💀": "🗿",
+        "☠": "🗿",
     }
     emoji = mapping.get(emoji, emoji)
     
     valid_set = {
-        "\ud83d\udc4d", "\ud83d\udc4e", "\u2764", "\ud83d\udd25", "\ud83e\udd70", "\ud83d\udc4f", 
-        "\ud83d\ude01", "\ud83e\udd14", "\ud83e\udd2f", "\ud83d\ude31", "\ud83e\udd2c", "\ud83d\ude22", 
-        "\ud83c\udf89", "\ud83e\udd29", "\ud83e\udd2e", "\ud83d\udca9", "\ud83d\ude4f", "\ud83d\udc4c", 
-        "\ud83d\udd4a", "\ud83e\udd21", "\ud83d\ude4c", "\ud83e\udd74", "\ud83d\ude0d", "\ud83d\udc33", 
-        "\u2764\ufe0f\u200d\ud83d\udd25", "\ud83c\udf1a", "\ud83c\udf2d", "\ud83d\udcaf", "\ud83e\udd23", 
-        "\u26a1", "\ud83c\udf4c", "\ud83c\udfc6", "\ud83d\udc94", "\ud83e\udd28", "\ud83d\ude10", 
-        "\ud83c\udf53", "\ud83c\udf7e", "\ud83c\udf7f", "\ud83e\udd1d", "\u270d", "\ud83d\udc85", 
-        "\ud83e\udd2a", "\ud83d\uddff", "\ud83c\udd92", "\ud83d\udc98", "\ud83d\ude48", "\ud83e\udd84", 
-        "\ud83d\ude18", "\ud83d\udc8a", "\ud83d\ude4a", "\ud83d\ude0e", "\ud83d\udc7e", "\ud83e\udd37", 
-        "\ud83e\udd37\u200d\u2642\ufe0f", "\ud83e\udd37\u200d\u2643\ufe0f", "\ud83d\ude21"
+        "👍", "👎", "❤", "🔥", "🥰", "👏", "😁", "🤔", "🤯", "😱", "🤬", "😢", "🎉", 
+        "🤩", "🤮", "💩", "🙏", "👌", "🕊", "🤡", "🥱", "🥴", "😍", "🐳", "❤‍🔥", "🌚", 
+        "🌭", "💯", "🤣", "⚡", "🍌", "🏆", "💔", "🤨", "😐", "🍓", "🍾", "🍿", "🤝", 
+        "✍", "💅", "🤪", "🗿", "🆒", "💘", "🙉", "🦄", "😘", "💊", "🙊", "😎", "👾", 
+        "🤷", "🤷‍♂️", "🤷‍♀️", "😡"
     }
     
     if emoji in valid_set:
         return emoji
     return None
+
 
 def build_system_prompt(personality_summary: str) -> str:
     """Builds the system prompt combining humanizer, rules, and current style summary."""
