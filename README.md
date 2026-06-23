@@ -92,7 +92,7 @@ graph TD
     I -->|message + reply| J[Ответ с цитатой]
     I -->|message + standalone| K[Отдельное сообщение]
     I -->|reaction| L[Ставит эмодзи-реакцию]
-    I -->|Сохранение действия с ID| M[history_{chat_id}.json]
+    I -->|Сохранение действия с ID| M["history_{chat_id}.json"]
     M -->|Если >= 200 сообщений| N[Gemini 3.1 сжимает лог и обновляет личность]
     N -->|Обновление личности| C
 ```
