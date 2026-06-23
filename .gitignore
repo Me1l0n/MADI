@@ -1,0 +1,31 @@
+# Private Credentials
+.env
+
+# Local Logs & Data
+bot.log
+history_data/
+temp_voice/
+
+# AI Models & Reference Voices (Very large files)
+silero_tts/
+xtts_v2/
+
+# Temporary Audio Files
+*.wav
+*.ogg
+*.mp3
+
+# Python Cache & Environment
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+.idea/
+.vscode/
+
+# Agent/Antigravity Cache
+.gemini/
+.agents/
