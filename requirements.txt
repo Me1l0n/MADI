@@ -1,5 +1,6 @@
 aiogram>=3.7.0
 aiohttp
+aiohttp-socks
 soundfile
 numpy
 torch
