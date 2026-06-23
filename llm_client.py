@@ -3,6 +3,7 @@ import json
 import logging
 import asyncio
 import re
+import config
 from typing import Dict, Any, List, Optional
 
 logger = logging.getLogger(__name__)
@@ -42,8 +43,9 @@ async def call_openrouter(
     # Use aiohttp to make the request
     for attempt in range(max_retries):
         try:
+            proxy_url = config.PROXY if config.PROXY else None
             async with aiohttp.ClientSession() as session:
-                async with session.post(url, headers=headers, json=payload, timeout=60) as response:
+                async with session.post(url, headers=headers, json=payload, timeout=60, proxy=proxy_url) as response:
                     if response.status == 200:
                         data = await response.json()
                         if "choices" in data and len(data["choices"]) > 0:

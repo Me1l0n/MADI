@@ -15,6 +15,7 @@ if hasattr(sys.stderr, "reconfigure"):
     sys.stderr.reconfigure(encoding='utf-8')
 
 from aiogram import Bot, Dispatcher, Router
+from aiogram.client.session.aiohttp import AiohttpSession
 from aiogram.enums import ParseMode
 from aiogram.filters import CommandStart
 from aiogram.types import Message, MessageReactionUpdated, ReactionTypeEmoji, FSInputFile
@@ -57,7 +58,12 @@ else:
     logger.warning(f"Humanizer file not found at {config.HUMANIZER_PATH}. Continuing with empty humanizer instructions.")
 
 # Initialize bot and dispatcher
-bot = Bot(token=config.TELEGRAM_BOT_TOKEN)
+if config.PROXY:
+    logger.info(f"Используем прокси для Telegram: {config.PROXY}")
+    session = AiohttpSession(proxy=config.PROXY)
+    bot = Bot(token=config.TELEGRAM_BOT_TOKEN, session=session)
+else:
+    bot = Bot(token=config.TELEGRAM_BOT_TOKEN)
 dp = Dispatcher()
 router = Router()
 

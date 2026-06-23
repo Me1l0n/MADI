@@ -56,3 +56,5 @@ try:
 except ValueError:
     TTS_VOICE_PROBABILITY = 0.2
 
+PROXY = os.environ.get("PROXY", "")
+
